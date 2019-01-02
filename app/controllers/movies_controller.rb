@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.sort
   end
 
   def new
@@ -10,10 +10,10 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(params[:id])
+    @movie = Movie.new
 
     if @movie.save
-      redirect_to movie_path, notice: "Movie Entered"
+      redirect_to '/' , notice: "Movie Entered"
     else
       render 'new'
     end
@@ -33,9 +33,9 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  #def movie_params
-  #  params.require(:movie).permit(:title, :service)
-  #end
+  def movie_params
+    params.require(:movie).permit(:title, :service)
+  end
 
 
 end

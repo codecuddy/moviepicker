@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :movies
   root "movies#index"
 
-  get "movies"             => "movies#index"
-  post "movies"            => "movies#create"
-  get "movies/new"         => "movies#new"
-  get "movies/:id"         => "movies#show"
+  get "movies" => "movies#index"
+  get "movies/new" => "movies#new"
+  post "movies/new" => "movies#create"
+  get "movies/:id" => "movies#show"
   #get "movies/:id/edit"    => "movies#edit"
   #put "movies/:id"         => "movies#update"
 end
