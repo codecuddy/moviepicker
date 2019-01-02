@@ -2,5 +2,6 @@
   %h1= "Movies are going to be here soon!"
   .div
     - @movies.each do |movie|
-      %p.title= movie.id
+      %p=link_to "Movie id: #{movie.id}", movie_path(movie[:id])
       %p.service= movie.created_at
+      %br
