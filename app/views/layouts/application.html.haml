@@ -7,5 +7,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-  
+    %nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-brand= link_to "Home", root_path
+        -# - if user_signed_in?
+        .ul.nav.navbar-nav.navbar-left
+          %li= "Settings"
+        .ul.nav.navbar-nav.navbar-right
+          %li= "Sign Out"
+        -#- else
+          %ul.nav.navbar-nav.navbar-right
+            %li= link_to "Sign Up", new_user_registration_path
+            %li= link_to "Sign In", new_user_session_path
     = yield

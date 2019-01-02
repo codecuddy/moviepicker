@@ -1,1 +1,9 @@
 %h1 Movies are going to be here soon!
+
+=simple_form_for @user do |f|
+  =f.input :title, label: "Movie Title"
+  =f.input :service, as: :radio_buttons, collection: [["0", "Netflix"], ["1", "Amazon Prime"]]
+  =f.button :submit
+
+
+<%= f.input :fund, as: :select, collection: funds, prompt: 'Select Fund', label: false %>
