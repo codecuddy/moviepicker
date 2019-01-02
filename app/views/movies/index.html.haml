@@ -1,4 +1,6 @@
 .container
-  %h1 Movies are going to be here soon!
-
-  = render 'form'
+  %h1= "Movies are going to be here soon!"
+  .div
+    - @movies.each do |movie|
+      %p.title= movie.id
+      %p.service= movie.created_at

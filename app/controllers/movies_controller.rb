@@ -1,26 +1,25 @@
 class MoviesController < ApplicationController
-  before_action :find_movie, only: [:show]
+  before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
     @movies = Movie.all
   end
 
   def new
-    @movies = Movie.new(movie_params)
+    @movies = Movie.new(params[:id])
   end
 
-  #def create
-  #@movie = Moview.new(movie_params)
+  def create
+    @movie = Movie.new(params[:id])
 
-  #  if @movie.save
-  #    redirect_to @movie, notice: "Movie Entered"
-  #  else
-  #    render 'new'
-  #  end
-  # end
+    if @movie.save
+      redirect_to movie_path, notice: "Movie Entered"
+    else
+      render 'new'
+    end
+  end
 
   def show
-    @movie = Movie.find_movie
   end
 
   #def destroy
@@ -30,11 +29,13 @@ class MoviesController < ApplicationController
 
   private
 
-  def movie_params
-    params.require(:movie).permit(:title, :service)
-  end
-
   def find_movie
     @movie = Movie.find(params[:id])
   end
+
+  #def movie_params
+  #  params.require(:movie).permit(:title, :service)
+  #end
+
+
 end
