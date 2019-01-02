@@ -56,6 +56,8 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    haml (4.0.7)
+      tilt
     i18n (1.4.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.8.0)
@@ -161,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  haml (~> 4.0, >= 4.0.7)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
