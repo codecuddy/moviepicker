@@ -19,13 +19,19 @@ class MoviesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def show
   end
 
-  #def destroy
-  # @movie.destroy
-  # redirect_to root_path
-  #end
+  def destroy
+   @movie.destroy
+   redirect_to root_path
+  end
 
   private
 
@@ -36,6 +42,4 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:title, :service)
   end
-
-
 end
