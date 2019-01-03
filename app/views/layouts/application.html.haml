@@ -12,7 +12,7 @@
         .navbar-brand= link_to "Home", root_path
         -# - if user_signed_in?
         .ul.nav.navbar-nav.navbar-left
-          %li= "Settings"
+          %li= link_to "Add Movie", movies_new_path
         .ul.nav.navbar-nav.navbar-right
           %li= "Sign In/Out"
         -#- else

@@ -1,7 +1,7 @@
 .form-field
   = simple_form_for :movie do |f|
     .form-group
-      = f.input :title, label: "Movie Title", input_html: { class: 'form-control' }
+      = f.input :title, label: false, placeholder: "Movie Title", input_html: { class: 'form-control' }
     .form-group
-      = f.input :service, collection: [["0", "Netflix"], ["1", "Amazon Prime"]], label_method: :second, value_method: :first, input_html: { class: 'form-control' }
+      = f.input :service, label: false, placeholder: "Netflix or Prime", input_html: { class: 'form-control' }
     = f.button :button, type: :submit, class: "btn btn-info", value: "Save Movie"
