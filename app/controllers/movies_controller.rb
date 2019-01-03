@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
 
 
   def update
-    @movie = @movie.update([title: "", service: ""])
+    @movie = @movie.update_attribute([title: ":title", service: ":service"])
   end
 
   def show
