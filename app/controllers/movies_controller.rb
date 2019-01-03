@@ -22,7 +22,9 @@ class MoviesController < ApplicationController
   def edit
   end
 
+
   def update
+    @movie = @movie.update([title: "", service: ""])
   end
 
   def show

@@ -3,7 +3,7 @@
   .div
     %p= "Movie Title: " + "#{@movie.title}"
     %p= "Movie Service: " + "#{@movie.service}"
-    =link_to "Edit #{@movie.title}", root_path
+    =link_to "Edit #{@movie.title}", "#{@movie.id}/edit"
     %br
     =link_to "Delete #{@movie.title}", movie_path(@movie), method: :delete
   =link_to "All Movies", root_path
