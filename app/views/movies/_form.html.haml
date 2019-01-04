@@ -1,8 +1,8 @@
 %h3= "New Movie"
-.form-field
-  = simple_form_for :movie do |f|
+.forms-field
+  = simple_form_for :movie, :url => @movie, :method => :post do |f|
     .form-group
       = f.input :title, label: false, placeholder: "Movie Title", input_html: { class: 'form-control' }
     .form-group
       = f.input :service, label: false, placeholder: "Netflix, Prime, or YouTube TV", input_html: { class: 'form-control' }
-    = f.button :button, type: :submit, class: "btn btn-info", value: "Save Movie"
+    = f.button  :submit, class: "btn btn-info", value: "Save Movie"

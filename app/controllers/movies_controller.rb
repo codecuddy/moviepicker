@@ -6,11 +6,15 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @movies = Movie.new(params[:id])
+    @movie = Movie.new
+  end
+
+  def show
   end
 
   def create
-    @movie = Movie.new
+    @movie = Movie.new(movie_params)
+    puts "posting..."
 
     if @movie.save
       redirect_to '/' , notice: "Movie Entered"
@@ -20,15 +24,15 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @movie = Movie.find(params[:id])
   end
 
 
   def update
-    @movie = @movie.update_attribute([title: ":title", service: ":service"])
+    @movie = @movie.update(movie_params)
   end
 
-  def show
-  end
+
 
   def destroy
    @movie.destroy
