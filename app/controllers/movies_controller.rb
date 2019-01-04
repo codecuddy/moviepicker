@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all.sort
+    @movies = Movie.all.order('title ASC')
   end
 
   def new
@@ -14,25 +14,24 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-    puts "posting..."
 
     if @movie.save
-      redirect_to '/' , notice: "Movie Entered"
+      redirect_to movie_path(@movie) , notice: "Movie Entered"
     else
       render 'new'
     end
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
-
 
   def update
-    @movie = @movie.update(movie_params)
+    if @movie.update(movie_params)
+  	  redirect_to movie_path(@movie), notice: "Movie Updated"
+  	else
+  	  render 'edit'
+  	end
   end
-
-
 
   def destroy
    @movie.destroy

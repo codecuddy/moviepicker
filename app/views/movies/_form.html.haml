@@ -1,6 +1,5 @@
-%h3= "New Movie"
 .forms-field
-  = simple_form_for :movie, :url => @movie, :method => :post do |f|
+  = simple_form_for :movie, :url => @movie do |f|
     .form-group
       = f.input :title, label: false, placeholder: "Movie Title", input_html: { class: 'form-control' }
     .form-group
