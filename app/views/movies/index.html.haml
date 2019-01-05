@@ -1,5 +1,5 @@
 .container
-  %h1= "Movies are going to be here soon!"
+  %h1= "List of Movie(s):"
   .div
     - @movies.each do |movie|
       = link_to "#{movie.title}", movie_path(movie[:id]), class: "movie-title"
