@@ -1,7 +1,7 @@
 .forms-field
   = simple_form_for @movie, :url => @movie.new_record? ? url_for(action: 'create', controller: 'movies') : url_for(action: 'update', controller: 'movies') do |f|
     .form-group
-      = f.input :title, label: false, placeholder: "Movie Title", input_html: { class: 'form-control' }
+      = f.input :title, label: "Movie", placeholder: "Title of Movie", input_html: { class: 'form-control' }
     .form-group
-      = f.input :service, label: false, placeholder: "Netflix, Prime, or YouTube TV", input_html: { class: 'form-control' }
+      = f.input :service, label: "Service", priority: ["Netflix"], collection: ["Amazon Prime", "Netflix", "YouTube TV"], input_html: { class: 'form-control' }
     = f.button  :submit, class: "btn btn-info", value: "Save Movie"

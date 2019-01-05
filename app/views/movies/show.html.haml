@@ -3,7 +3,7 @@
   .div
     %p= "Title: " + "#{@movie.title}"
     %p= "Service: " + "#{@movie.service}"
-    =link_to "Edit #{@movie.title}", edit_movie_path
-    %br
-    =link_to "Delete #{@movie.title}", movie_path(@movie), method: :delete
-  =link_to "All Movies", root_path
+    =link_to "Edit #{@movie.title}", edit_movie_path, class: "btn btn-warning"
+    =link_to "Delete #{@movie.title}", movie_path(@movie), method: :delete, class: "btn btn-danger confirmation"
+  %br
+  =link_to "View All Movies", root_path, class: "btn btn-info"
