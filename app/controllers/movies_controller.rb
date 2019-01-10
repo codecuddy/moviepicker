@@ -2,18 +2,18 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all.order('title ASC')
+    @movies = Movie.where(:user_id => current_user.id).order('title ASC')
   end
 
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.new
   end
 
   def show
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.new(movie_params)
 
     if @movie.save
       redirect_to movie_path(@movie) , notice: "Movie Entered"
