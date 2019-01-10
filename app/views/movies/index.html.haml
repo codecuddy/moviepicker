@@ -3,4 +3,4 @@
   .div
     - @movies.each do |movie|
       = link_to "#{movie.title}", movie_path(movie[:id]), class: "movie-title"
-      %p.service= "#{movie.service}"
+      %br
