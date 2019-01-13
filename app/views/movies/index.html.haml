@@ -1,6 +1,10 @@
 .container
-  %h1= "List of Movie(s):"
+  .jumbotron
+    .div.button
+      = link_to "Random Page", movie_random_path(@movies)
+
   .div
+    %h1= "All Shows"
     - @movies.each do |movie|
       = link_to "#{movie.title}", movie_path(movie[:id]), class: "movie-title"
       %br

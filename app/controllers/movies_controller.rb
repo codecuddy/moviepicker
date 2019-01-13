@@ -38,6 +38,11 @@ class MoviesController < ApplicationController
    redirect_to root_path
   end
 
+  def random
+    @movie = Movie.order("RANDOM()").first
+    redirect_to movie_path(@movie)
+  end
+
   private
 
   def find_movie
