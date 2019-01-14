@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
   end
 
   def random
-    @movie = Movie.order("RANDOM()").first
+    @movie = current_user.movies.order("RANDOM()").first
     redirect_to movie_path(@movie)
   end
 
