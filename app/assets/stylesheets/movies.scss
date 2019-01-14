@@ -16,6 +16,18 @@
   font-style: italic;
 }
 
-.button {
+.jumbotron {
   text-align: center;
+}
+
+.button {
+  background-color: gold;
+  color: darkgreen;
+  display: inline-block;
+  margin: auto;
+  padding: 8px 20px;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:5px;
+  cursor:pointer;
 }
