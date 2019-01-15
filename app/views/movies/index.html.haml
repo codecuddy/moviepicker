@@ -1,10 +1,13 @@
-.container
+.container.header
   .jumbotron
     .div.button
-      = link_to "Which Movie Should I Watch?", movie_random_path(@movies)
+      = link_to "What Should I Watch?", movie_random_path(@movies), class: "what-to-watch"
 
-  .div
-    %h1= "All Shows"
-    - @movies.each do |movie|
+.container.body-text
+  .div.movie-list
+  %h1= "My List"
+  %h5= link_to "Add Movie", new_movie_url, class: "add-movie"
+  - @movies.each do |movie|
+    .div.movie
       = link_to "#{movie.title}", movie_path(movie[:id]), class: "movie-title"
       %br

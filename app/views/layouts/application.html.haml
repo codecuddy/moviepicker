@@ -12,7 +12,7 @@
         .navbar-brand= link_to "Home", root_path
         -# - if user_signed_in?
         .ul.nav.navbar-nav.navbar-left
-          %li= link_to "Add Movie", new_movie_url
+          /%li= link_to "Add Movie", new_movie_url
         %p.navbar-text.pull-right
           - if user_signed_in?
             Logged in as
