@@ -6,12 +6,6 @@
   text-align: center;
 }
 
-.movie-title {
-  font-weight: bold;
-  text-transform: capitalize;
-  color: gold;
-}
-
 .jumbotron {
   display: inline-block;
   text-align: center;
@@ -36,8 +30,8 @@
 .add-movie {
   background-color: gold;
   color: navy;
-  display: inline-block;
   margin: auto;
+  display: inline-block;
   margin-bottom: 10px;
   padding: 8px 20px;
   text-decoration:none;
@@ -47,24 +41,35 @@
 }
 
 .body-text {
-  text-align: center;
+}
 
+.title-link {
+  text-align: center;
 }
 
 .movie-list {
+  margin: auto;
+  text-align: center;
 }
 
 .movie {
+  display: inline-flex;
   width: 300px;
-  margin: auto;
+  height: 400px;
   margin-bottom: 2px;
   border: 2px;
   border-radius: 8px;
   border-style: solid;
   border-color: black;
   background-color: #0d0fa5;
-  text-align: center;
   font-size: 1.5em;
+}
+
+.movie-title {
+  margin: auto;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: gold;
 }
 
 .movie-title:hover {
