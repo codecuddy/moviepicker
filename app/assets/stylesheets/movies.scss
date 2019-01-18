@@ -2,17 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.header {
+.button-head {
   text-align: center;
 }
 
+// What to watch AND add movie
 .buttons {
   display: inline-block;
   text-align: center;
 }
 
+//What to watch
 .button {
-  background-color: orange;
+  background-color: #FFA62F;
   display: inline-block;
   margin: auto;
   margin-top: 40px;
@@ -28,11 +30,14 @@
 
 .what-to-watch {
   color: navy;
+}
+.what-to-watch:hover {
+  text-decoration: none;
 
 }
-
+// Add Movie Button
 .add-movie {
-  background-color: gold;
+  background-color: #FFD801;
   color: navy;
   margin: auto;
   display: inline-block;
@@ -46,55 +51,96 @@
   cursor:pointer;
 }
 
+.add-movie:hover {
+  text-decoration: none;
+}
+
 .body-text {
 }
 
+// My List text
 .title-link {
   text-align: center;
   margin-top: 40px;
 }
 
+// Loop through and list all movies
 .movie-list {
   margin: auto;
   text-align: center;
+
 }
 
+// Individual movie cards
 .movie {
   display:inline-flex;
-  width: 300px;
-  height: 400px;
   margin-bottom: 2px;
   border: 2px;
   border-radius: 8px;
   border-style: solid;
   border-color: black;
   background-color: #0d0fa5;
-  font-size: 1.5em;
+
+}
+
+.clickable {
+  width: 300px;
+  height: 400px;
+  margin: auto;
 }
 
 .movie-title {
   margin: auto;
   font-weight: bold;
   text-transform: capitalize;
-  color: gold;
-}
-
-.show-title {
-  text-transform: capitalize;
-
+  color: #FFD801;
+  font-size: 1.5em;
 }
 
 .movie-title:hover {
   color: #f6f925;
+  text-decoration: none;
 }
 
 
 /* Show Movie */
+.show-container {
+  text-align: center;
+}
 
-.service {
+.show-info {
+  width: 500px;
+  margin: auto;
+}
+
+.show-words {
+  margin: 6px;
+  padding: 10px;
+  border: 2px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: black;
+  background-color: #0d0fa5;
+  color: #FFD801;
+}
+
+.show-movie-title {
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+.show-content{
+  text-align: left;
+}
+
+.show-buttons {
+  width: 100%;
+}
+
+.service, .genre, .runtime {
   font-style: italic;
 }
 
-.genre {
-  font-style: italic;
+.overview {
+
 }

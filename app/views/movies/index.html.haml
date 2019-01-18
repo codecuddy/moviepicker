@@ -1,4 +1,4 @@
-.container.header
+.container.button-head
   .buttons
     .div.button
       = link_to "What Should I Watch?", movie_random_path(@movies), class: "what-to-watch"
@@ -11,5 +11,6 @@
   .div.movie-list
     - @movies.each do |movie|
       .div.movie
-        = link_to "#{movie.title}", movie_path(movie[:id]), class: "movie-title"
-        %br
+        = link_to movie_path(movie[:id]), class: "movie-title" do
+          .clickable
+            #{movie.title}
