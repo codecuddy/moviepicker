@@ -1,9 +1,14 @@
-.container
-  %h1.show-title= "#{@movie.title}"
-  .div
-    %pservice= "Service: " + "#{@movie.service}"
-    %p.genre= "Genre: " + "#{@movie.genre}"
-    =link_to "Edit #{@movie.title}", edit_movie_path, class: "btn btn-warning"
-    =link_to "Delete #{@movie.title}", movie_path(@movie), method: :delete, class: "btn btn-danger"
-  %br
-  =link_to "View All Movies", root_path, class: "btn btn-info"
+.container.show-container
+  .show-info
+    .show-words
+      %h2.show-movie-title= "#{@movie.title}"
+      .show-content
+        %p.service= "Service: " + "#{@movie.service}"
+        %p.overview= "Overview: This is where we will eventually see a brief write up on the movies and we will know what the plot is. This might also tell us some info about who is in the film, or any of that kind of necessary information.".truncate(180)
+        %p.genre= "Genre: " + "#{@movie.genre}"
+        %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
+    .show-buttons
+      =link_to "Edit Movie", edit_movie_path, class: "btn btn-warning"
+      =link_to "Delete Movie", movie_path(@movie), method: :delete, class: "btn btn-danger"
+    %br
+      =link_to "View All Movies", root_path, class: "btn btn-info"

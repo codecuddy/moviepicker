@@ -1,3 +1,5 @@
 %div.container
   %h3= "Edit: #{@movie.title}"
   = render 'form'
+  %br
+  =link_to "Back", movie_path(@movie), class: "btn btn-warning"
