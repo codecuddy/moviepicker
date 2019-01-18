@@ -14,3 +14,4 @@
         = link_to movie_path(movie[:id]), class: "movie-title" do
           .clickable
             #{movie.title}
+            %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }

@@ -83,4 +83,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ENV['MOVIES_DB_API_KEY']='8e769aa062541c46fa204abfd699db7c'
+
 end

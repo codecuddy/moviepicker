@@ -4,7 +4,7 @@
       %h2.show-movie-title= "#{@movie.title}"
       .show-content
         %p.service= "Service: " + "#{@movie.service}"
-        %p.overview= "Overview: This is where we will eventually see a brief write up on the movies and we will know what the plot is. This might also tell us some info about who is in the film, or any of that kind of necessary information.".truncate(180)
+        %p.overview= "Overview: " + "#{@movie.overview}"
         %p.genre= "Genre: " + "#{@movie.genre}"
         %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
     .show-buttons
