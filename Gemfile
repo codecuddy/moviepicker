@@ -37,9 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'simple_form'
 gem 'bootstrap', '~> 4.2.1'
-gem 'jquery-rails'
 gem 'devise'
-
+gem 'rest-client', '~> 2.0.2'
 
 
 group :development, :test do
