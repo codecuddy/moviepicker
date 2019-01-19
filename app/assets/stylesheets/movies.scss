@@ -157,6 +157,17 @@
   width: 100%;
 }
 
+.show-no-photo {
+  margin: auto;
+  display: inline-block;
+}
+
+.index-no-photo {
+  height: 450px;
+  background-color: silver;
+  color: white;
+}
+
 .service, .genre, .runtime {
   font-style: italic;
 }

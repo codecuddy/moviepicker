@@ -1,15 +1,25 @@
 .container.show-container
   .show-info
     .show-content
-      .show-photo
-        %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{@movie.photo.to_s}" }
-      .show-words
-        %h2.show-movie-title= "#{@movie.title}"
-        .show-movie-info
-          %p.service= "Service: " + "#{@movie.service}"
-          %p.overview= "Overview: " + "#{@movie.overview}"
-          %p.genre= "Genre: " + "#{@movie.genre}"
-          %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
+      - if @movie.photo?
+        .show-photo
+          %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{@movie.photo.to_s}" }
+        .show-words
+          %h2.show-movie-title= "#{@movie.title}"
+          .show-movie-info
+            %p.service= "Service: " + "#{@movie.service}"
+            %p.overview= "Overview: " + "#{@movie.overview}"
+            %p.genre= "Genre: " + "#{@movie.genre}"
+            %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
+      - else
+        .show-no-photo
+          .show-words
+            %h2.show-movie-title= "#{@movie.title}"
+            .show-movie-info
+              %p.service= "Service: " + "#{@movie.service}"
+              %p.overview= "Overview: " + "#{@movie.overview}"
+              %p.genre= "Genre: " + "#{@movie.genre}"
+              %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
 
     .show-buttons
       =link_to "View All Movies", root_path, class: "btn btn-info"

@@ -14,4 +14,8 @@
         = link_to movie_path(movie[:id]), class: "movie-title" do
           #{movie.title}
           .clickable
-            %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
+            - if movie.photo?
+              %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
+            - else
+              .index-no-photo
+                %p= "No Photo Available"

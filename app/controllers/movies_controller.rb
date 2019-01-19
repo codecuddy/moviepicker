@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order('updated_at DESC').limit(84)
+    @movies = Movie.order('updated_at DESC').limit(50)
   end
 
   def new
