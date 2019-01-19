@@ -74,18 +74,17 @@
 // Individual movie cards
 .movie {
   display:inline-flex;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
   border: 2px;
   border-radius: 8px;
   border-style: solid;
-  border-color: black;
-  background-color: #0d0fa5;
+  border-color: #191919;
 
 }
 
 .clickable {
   width: 300px;
-  height: 400px;
+  height: 100%;
   margin: auto;
 }
 
@@ -93,13 +92,20 @@
   margin: auto;
   font-weight: bold;
   text-transform: capitalize;
-  color: #FFD801;
-  font-size: 1.5em;
+  color: #191919;
+  font-size: 1em;
 }
 
 .movie-title:hover {
+  background-color: #191919;
   color: #f6f925;
   text-decoration: none;
+  border: 2px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #f6f925;
+
+
 }
 
 
@@ -109,12 +115,19 @@
 }
 
 .show-info {
-  width: 500px;
   margin: auto;
 }
 
+.show-content {
+  display: inline-flex;
+  width: 80%;
+  margin-bottom: 15px;
+
+}
+
 .show-words {
-  margin: 6px;
+  display: block;
+  margin-left: 6px;
   padding: 10px;
   border: 2px;
   border-radius: 8px;
@@ -122,6 +135,13 @@
   border-color: black;
   background-color: #0d0fa5;
   color: #FFD801;
+}
+
+.show-photo {
+  border: 2px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: black;
 }
 
 .show-movie-title {

@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order('updated_at DESC').limit(40)
+    @movies = Movie.order('updated_at DESC').limit(84)
   end
 
   def new
@@ -38,7 +38,8 @@ class MoviesController < ApplicationController
   end
 
   def random
-    @movie = current_user.movies.order("RANDOM()").first
+  #  @movie = current_user.movies.order("RANDOM()").first
+    @movie = Movie.order("RANDOM()").first
     redirect_to movie_path(@movie)
   end
 
