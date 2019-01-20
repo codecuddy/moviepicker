@@ -39,6 +39,8 @@ gem 'simple_form'
 gem 'bootstrap', '~> 4.2.1'
 gem 'devise'
 gem 'rest-client', '~> 2.0.2'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
 
 
 group :development, :test do

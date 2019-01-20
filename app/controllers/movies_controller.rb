@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order("RANDOM()").limit(530)
+    @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
   end
 
   def new
