@@ -7,9 +7,9 @@
         .show-words
           %h2.show-movie-title= "#{@movie.title}"
           .show-movie-info
+            %p.overview= "#{@movie.overview}"
             %p.service= "Service: " + "#{@movie.service}"
-            %p.overview= "Overview: " + "#{@movie.overview}"
-            %p.genre= "Genre: " + "#{@movie.genre}"
+            /%p.genre= "Genre: " + "#{@movie.genre}"
             %p.runtime= "Runtime: #{Time.now.strftime("%I:%M")}"
       - else
         .show-no-photo

@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.order('updated_at DESC').limit(50)
+    @movies = Movie.order("RANDOM()").limit(530)
   end
 
   def new
@@ -50,6 +50,6 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult)
   end
 end
