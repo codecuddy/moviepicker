@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190118092836) do
+ActiveRecord::Schema.define(version: 20190119225014) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20190118092836) do
     t.string   "genre",      default: "--- []\n"
     t.text     "overview"
     t.string   "photo"
+    t.string   "language"
+    t.string   "adult"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
