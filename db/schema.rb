@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190119225014) do
+ActiveRecord::Schema.define(version: 20190121202919) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.string   "service"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "user_id"
-    t.string   "genre",      default: "--- []\n"
+    t.string   "genre",        default: "--- []\n"
     t.text     "overview"
     t.string   "photo"
     t.string   "language"
     t.string   "adult"
+    t.string   "release_date"
+    t.integer  "runtime"
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 

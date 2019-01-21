@@ -3,6 +3,11 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
+    @search = params["search"]
+    if @search.present?
+      @title = @search["title"]
+      @movies = Movie.where(title: @title)
+    end
   end
 
   def new

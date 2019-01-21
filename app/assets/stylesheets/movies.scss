@@ -1,6 +1,10 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.nav-pic {
+  margin: auto;
+  width: 4px;
+}
 
 .button-head {
   text-align: center;
@@ -157,6 +161,11 @@
 
 .show-buttons {
   width: 100%;
+}
+
+show-add-movie {
+  text-align: center;
+
 }
 
 .show-no-photo {
