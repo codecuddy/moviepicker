@@ -109,10 +109,7 @@
   border-radius: 8px;
   border-style: solid;
   border-color: #f6f925;
-
-
 }
-
 
 /* Show Movie */
 .show-container {
@@ -165,7 +162,6 @@
 
 show-add-movie {
   text-align: center;
-
 }
 
 .show-no-photo {
@@ -179,7 +175,7 @@ show-add-movie {
   color: white;
 }
 
-.service, .genre, .runtime {
+.service, .genre, .runtime, .release_date {
   font-style: italic;
 }
 
