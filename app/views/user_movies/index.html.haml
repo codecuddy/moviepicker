@@ -1,0 +1,8 @@
+.container.button-head
+  %h1= "User Movie Index Page"
+  %h3= "hi #{current_user.email}"
+  .buttons
+    .div.button
+      /= link_to "What Should I Watch?", user_movie_random_path(@movies), class: "what-to-watch"
+    .div
+      %h5= link_to "Add Movie", movies_path, class: "add-movie"

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       get "/users"      => "user#index"
       get "random"      => "movies#random"
     end
-  root "movies#index"
+  root "user_movies#index"
 
+
+  resources :user_movies do
+    get "random"      => "user_movies#random"
+  end
 end

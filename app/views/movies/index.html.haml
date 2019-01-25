@@ -1,13 +1,13 @@
 .container.button-head
   .buttons
     .div.button
-      = link_to "What Should I Watch?", movie_random_path(@movies), class: "what-to-watch"
+      = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
     .div
       %h5= link_to "Add Movie", new_movie_url, class: "add-movie"
 
 .container.body-text
   .div.title-link
-    %h1= "My List"
+    %h1= "Explore All Movies"
     .page-number
       .digg_pagination
         = will_paginate @movies, renderer: BootstrapPagination::Rails

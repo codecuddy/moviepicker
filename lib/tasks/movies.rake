@@ -16,7 +16,7 @@ namespace :movies do
           movie_json.symbolize_keys!
           next if movie_json[:original_language] != "en" || movie_json[:adult] == true
           params = {}
-          params[:movie_id] = movie_json[:id]
+          #params[:movie_id] = movie_json[:id]
 #(1..10).each do |movie_id|
           #puts "------------------#The movie id is: #{params[:movie_id]} --------------------------"
           #response_new = RestClient.get "https://api.themoviedb.org/3/movie/"+params[:movie_id].to_s+"?&api_key="+ENV['MOVIES_DB_API_KEY']
