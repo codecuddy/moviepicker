@@ -4,11 +4,12 @@ Rails.application.routes.draw do
     resources :movies do
       get "/users"      => "user#index"
       get "random"      => "movies#random"
+      get "user_random" => "movies#user_random"
+      get "show_clicked" => "movies#show_clicked"
     end
-  root "user_movies#index"
+  root "movies#home"
 
 
   resources :user_movies do
-    get "random"      => "user_movies#random"
   end
 end
