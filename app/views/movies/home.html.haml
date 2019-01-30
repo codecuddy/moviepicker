@@ -8,14 +8,5 @@
       %h5= link_to "Add Movie From List", movies_path, class: "add-movie"
 
 .container.body-text
-  -if @current_user != nil
-    .div
-      - @clicked_movies = @user_movies.collect { |m| m.user_movie.clicked == true }
-      .div.movie
-        %p= "#{movie.title}"
-        = link_to movie_path(movie[:id]), class: "movie-title" do
-          %p="#{movie.title}".truncate(35)
-  -else
-    .div.movie-list
-      %br
-      %p= "Add Movies to Your Library"
+  .div
+    %p= "#{@user_movies}"

@@ -10,8 +10,11 @@ class MoviesController < ApplicationController
 #    end
   end
 
+  def home
+    @user_movies = "Movie movie movie movie"
+  end
+
   def new
-    @movie = current_user.movies.new
   end
 
   def show
@@ -55,14 +58,18 @@ class MoviesController < ApplicationController
 
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
-    puts "---:)-------------------------------MOVIE: #{@user_movie}----------------------------------"
+    puts "---:)-----------------------------MOVIE: #{@user_movie}----------------------------------"
     @current_user = User.first
-    puts "----------------------------------USER: #{@current_user.id}----------------------------------"
+    puts "----------------------------------USER: #{@current_user}----------------------------------"
     @current_user.movies << @user_movie
     @current_user.save
+    @user_movie_ids = @current_user.movies.ids.uniq!
+    puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ALL MOVIES: #{@user_movies}----------------------------------"
     puts "----------------------------------Save MOVIE-TITLE: #{@user_movie.title}----------------------------------"
-    puts "----------------------------------Save MOVIE-OVERVIEW: #{@user_movie.overview}----------------------------------"
-    puts "---:(-------------------------------Save USER: #{@current_user.movie_ids}----------------------------------"
+    puts "----------------------------------Save MOVIE-OVERVIEW: #{@user_movie.overview.truncate(20)}----------------------------------"
+    puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
+    puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
+
     redirect_to root_path, notice: "Movie added to library"
   end
 
@@ -75,4 +82,10 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
   end
+
+  def user_movie_params
+    params.require(:user_movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult)
+  end
+
+
 end
