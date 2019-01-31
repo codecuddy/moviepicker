@@ -11,8 +11,11 @@
             %p.service= "Service: " + "#{@movie.service}"
             /%p.genre= "Genre: " + "#{@movie.genre}"
             %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
-            %p.runtime= "Runtime: #{@movie.runtime}"
-            = link_to "Add Movie", movie_path(@movie), class: "btn btn-info"
+            /%p.runtime= "Runtime: #{@movie.runtime}"
+            = link_to "Add Movie", movie_show_clicked_path(@movie), class: "btn btn-success"
+            /= link_to "Remove Movie", user_movie_path(@movie), method: :remove, data: { confirm: "Are you sure?" }, class: "btn btn-warning"
+
+
       - else
         .show-no-photo
           .show-words
@@ -21,10 +24,10 @@
               %p.overview= "Overview: " + "#{@movie.overview}"
               %p.service= "Service: " + "#{@movie.service}"
               /%p.genre= "Genre: " + "#{@movie.genre}"
-              %p.runtime= "Runtime: #{@movie.runtime}"
+              /%p.runtime= "Runtime: #{@movie.runtime}"
 
 
     .show-buttons
-      =link_to "Back to All Movies", root_path, class: "btn btn-info"
+      =link_to "My Movies", root_path, class: "btn btn-primary"
       =link_to "Edit Movie", edit_movie_path, class: "btn btn-warning"
-      =link_to "Delete Movie", movie_path(@movie), method: :delete, class: "btn btn-danger"
+      =link_to "All Movies", movies_path, class: "btn btn-dark"

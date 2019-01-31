@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
-  belongs_to :user, optional: true
-  validates_uniqueness_of :title, :scope => [:user]
+  has_many :user_movies
+  has_many :users, through: :user_movies
+  validates :title, uniqueness: { scope: :release_date}
 
 end

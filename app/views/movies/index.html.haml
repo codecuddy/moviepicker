@@ -1,28 +1,33 @@
 .container.button-head
   .buttons
     .div.button
-      = link_to "What Should I Watch?", movie_random_path(@movies), class: "what-to-watch"
+      = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
     .div
-      %h5= link_to "Add Movie", new_movie_url, class: "add-movie"
+      /%h5= link_to "Search Movie", seach_movie, class: "add-movie"
 
 .container.body-text
   .div.title-link
-    %h1= "My List"
-    .page-number
-      .digg_pagination
-        = will_paginate @movies, renderer: BootstrapPagination::Rails
-  .div.movie-list
-    - @movies.each do |movie|
-      .div.movie
-        = link_to movie_path(movie[:id]), class: "movie-title" do
-          %p="#{movie.title}".truncate(35)
-          .clickable
-            - if movie.photo?
-              %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
-            - else
-              .index-no-photo
-                %p= "No Photo Available"
-  .div.title-link
-    .page-number
-      .digg_pagination
-        = will_paginate @movies
+    -if @movies != nil
+      %h1= "Explore All Movies"
+      .page-number
+        .digg_pagination
+          = will_paginate @movies, renderer: BootstrapPagination::Rails
+      .div.movie-list
+        - @movies.each do |movie|
+          .div.movie
+            = link_to movie_path(movie[:id]), class: "movie-title" do
+              %p="#{movie.title}".truncate(35)
+              .clickable
+                - if movie.photo?
+                  %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
+                - else
+                  .index-no-photo
+                    %p= "No Photo Available"
+    -else
+      .div
+        %p= "No Movies"
+    -if @movies != nil
+      .div.title-link
+        .page-number
+          .digg_pagination
+            = will_paginate @movies
