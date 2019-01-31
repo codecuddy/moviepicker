@@ -16,7 +16,7 @@
   .div.movie-list
     - @user_movies.each do |movie|
       .div.movie
-        = link_to edit_movie_path(movie[:id]), class: "movie-title" do
+        = link_to movie_path(movie[:id]), class: "movie-title" do
           %p="#{movie.title}".truncate(35)
           .clickable
             - if movie.photo?

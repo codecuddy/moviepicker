@@ -56,14 +56,20 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie)
   end
 
+
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
     puts "---:)-----------------------------MOVIE: #{@user_movie.attributes}----------------------------------"
     #current_user = current_user
     #puts "----------------------------------USER: #{current_user.attributes}----------------------------------"
+  begin
     current_user.movies << @user_movie
     current_user.save
-    @user_movie_ids = @current_user.movies.ids.uniq!
+  rescue ActiveRecord::RecordInvalid
+    puts "$$$$$$$$$$$$$$$$$$$$$$$ no no no MOVIE ALREADY IN LIBRARY $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+  end
+
+    @user_movie_ids = current_user.movies.ids.uniq!
     puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ID: #{@user_movie.id}----------------------------------"
     puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.MOVIE-ID: #{@user_movie.movie_id}----------------------------------"
     puts "----------------------------------Save MOVIE-TITLE: #{@user_movie.title}----------------------------------"
@@ -74,8 +80,8 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
     puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
+    redirect_to root_path
 
-    redirect_to root_path, notice: "Movie added to library"
   end
 
   private
@@ -88,10 +94,4 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
   end
-
-  def user_movie_params
-    params.require(:user_movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
-  end
-
-
 end
