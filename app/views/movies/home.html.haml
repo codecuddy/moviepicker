@@ -1,13 +1,18 @@
 .container.button-head
   %h1= "Movie Home Page"
   %h3= "hi #{current_user.email}"
+
   .buttons
-    .div
-      /= link_to "What Should I Watch?", movie_user_random_path, class: "what-to-watch"
+    .div.button
+      = link_to "What Should I Watch?", movie_user_random_path(@user_movies), class: "what-to-watch"
     .div
       %h5= link_to "Add Movie From List", movies_path, class: "add-movie"
 
 .container.body-text
+  .div.title-link
+    .page-number
+      .digg_pagination
+        = will_paginate @user_movies, renderer: BootstrapPagination::Rails
   .div.movie-list
     - @user_movies.each do |movie|
       .div.movie
@@ -19,3 +24,8 @@
             - else
               .index-no-photo
                 %p= "No Photo Available"
+
+    .div.title-link
+      .page-number
+        .digg_pagination
+          = will_paginate @user_movies

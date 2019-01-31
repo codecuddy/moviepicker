@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def home
-    @user_movies = current_user.movies
+    @user_movies = current_user.movies.paginate(page: params[:page], per_page: 20).order("title ASC")
   end
 
   def new
@@ -51,10 +51,10 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie)
   end
 
-#  def user_random
-#    @movie = current_user.movies.order("RANDOM()").first
-#    redirect_to movie_path(@movie)
-#  end
+  def user_random
+    @movie = current_user.movies.order("RANDOM()").first
+    redirect_to movie_path(@movie)
+  end
 
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
