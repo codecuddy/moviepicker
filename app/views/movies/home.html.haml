@@ -8,5 +8,14 @@
       %h5= link_to "Add Movie From List", movies_path, class: "add-movie"
 
 .container.body-text
-  .div
-    %p= "#{@user_movies}"
+  .div.movie-list
+    - @user_movies.each do |movie|
+      .div.movie
+        = link_to edit_movie_path(movie[:id]), class: "movie-title" do
+          %p="#{movie.title}".truncate(35)
+          .clickable
+            - if movie.photo?
+              %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
+            - else
+              .index-no-photo
+                %p= "No Photo Available"

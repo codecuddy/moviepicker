@@ -4,7 +4,7 @@ namespace :movies do
   desc "TODO"
   task create_all: :environment do
     # Can only rake < 40 pages of movies at a time to avoid 429 error so change from 1..1000 to 1..30 then 30..60 etc
-    (1..10).each do |page_num|
+    (10..40).each do |page_num|
       puts "Page Number: #{page_num} of 1,000"
       response = RestClient.get "https://api.themoviedb.org/3/discover/movie?page="+page_num.to_s+"&api_key="+ENV['MOVIES_DB_API_KEY']
       if response.code == 500
@@ -16,6 +16,7 @@ namespace :movies do
           movie_json.symbolize_keys!
           next if movie_json[:original_language] != "en" || movie_json[:adult] == true
           params = {}
+          params[:movie_id] = movie_json[:id]
           params[:title]= movie_json[:title]
           params[:overview] = movie_json[:overview]
           params[:photo] = movie_json[:poster_path]

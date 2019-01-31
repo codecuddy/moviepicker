@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def home
-    @user_movies = "Movie movie movie movie"
+    @user_movies = current_user.movies
   end
 
   def new
@@ -58,15 +58,20 @@ class MoviesController < ApplicationController
 
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
-    puts "---:)-----------------------------MOVIE: #{@user_movie}----------------------------------"
-    @current_user = User.first
-    puts "----------------------------------USER: #{@current_user}----------------------------------"
-    @current_user.movies << @user_movie
-    @current_user.save
+    puts "---:)-----------------------------MOVIE: #{@user_movie.attributes}----------------------------------"
+    #current_user = current_user
+    #puts "----------------------------------USER: #{current_user.attributes}----------------------------------"
+    current_user.movies << @user_movie
+    current_user.save
     @user_movie_ids = @current_user.movies.ids.uniq!
-    puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ALL MOVIES: #{@user_movies}----------------------------------"
+    puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ID: #{@user_movie.id}----------------------------------"
+    puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.MOVIE-ID: #{@user_movie.movie_id}----------------------------------"
     puts "----------------------------------Save MOVIE-TITLE: #{@user_movie.title}----------------------------------"
     puts "----------------------------------Save MOVIE-OVERVIEW: #{@user_movie.overview.truncate(20)}----------------------------------"
+    puts "----------------------------------Save MOVIE-PHOTO: #{@user_movie.photo}----------------------------------"
+    puts "----------------------------------Save MOVIE-language: #{@user_movie.language}----------------------------------"
+    puts "----------------------------------Save MOVIE-ADULT: #{@user_movie.adult}----------------------------------"
+    puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
     puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
 
@@ -79,12 +84,13 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+
   def movie_params
     params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
   end
 
   def user_movie_params
-    params.require(:user_movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult)
+    params.require(:user_movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
   end
 
 
