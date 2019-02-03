@@ -17,10 +17,23 @@
  @import "bootstrap";
 
 
-.body {
-  background-color: red;
+body {
+  background-color: #A9A9A9	;
 }
 
 abbr {
   display: none;
+}
+
+.navbar {
+  background-color: orange;
+  /*opacity: .8;*/
+}
+
+.navbar-brand:a {
+  color: yellow;
+}
+
+.navbar-link {
+  color: white;
 }

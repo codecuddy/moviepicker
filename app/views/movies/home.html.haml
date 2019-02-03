@@ -1,12 +1,12 @@
 .container.button-head
-  %h1= "Movie Home Page"
+  %h1= "Home Page"
   %h3= "hi #{current_user.email}"
 
   .buttons
     .div.button
       = link_to "What Should I Watch?", movie_user_random_path(@user_movies), class: "what-to-watch"
     .div
-      %h5= link_to "Add Movie From List", movies_path, class: "add-movie"
+      %h5= link_to "Add Movie To Library", movies_path, class: "add-movie"
 
 .container.body-text
   .div.title-link
@@ -14,13 +14,13 @@
       .digg_pagination
         = will_paginate @user_movies, renderer: BootstrapPagination::Rails
   .div.movie-list
-    - @user_movies.each do |movie|
+    - @user_movies.each do |user_movie|
       .div.movie
-        = link_to movie_path(movie[:id]), class: "movie-title" do
-          %p="#{movie.title}".truncate(35)
+        = link_to movie_path(user_movie[:id]), class: "movie-title" do
+          %p="#{user_movie.title}".truncate(35)
           .clickable
-            - if movie.photo?
-              %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{movie.photo.to_s}" }
+            - if user_movie.photo?
+              %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{user_movie.photo.to_s}" }
             - else
               .index-no-photo
                 %p= "No Photo Available"

@@ -1,10 +1,7 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.nav-pic {
-  margin: auto;
-  width: 4px;
-}
+
 
 .button-head {
   text-align: center;
@@ -81,7 +78,7 @@
   display:inline-flex;
   margin-bottom: 6px;
   border: 2px;
-  border-radius: 8px;
+  border-radius: 6px;
   border-style: solid;
   border-color: #191919;
 
@@ -123,8 +120,7 @@
 .show-content {
   display: inline-flex;
   width: 80%;
-  margin-bottom: 15px;
-
+  margin: 15px;
 }
 
 .show-words {

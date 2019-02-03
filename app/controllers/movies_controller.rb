@@ -1,8 +1,9 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
-    @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
+    @movies = Movie.paginate(page: params[:page], per_page: 66).order("title ASC")
 #    @search = params["search"]
 #    if @search.present?
 #      @title = @search["title"]
@@ -18,10 +19,12 @@ class MoviesController < ApplicationController
   end
 
   def show
+    puts "*********************** showing page"
   end
 
   def create
-    @movie = current_user.movies.new(movie_params)
+    #@movie = current_user.movies.new(movie_params
+    @movie = Movie.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie) , notice: "Movie Entered"
     else
@@ -41,8 +44,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-   @movie.destroy
-   redirect_to root_path
+   #@movie.destroy
+   #puts "destroying movie"
+   #redirect_to root_path
   end
 
   def random
@@ -90,6 +94,9 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  #def find_user_movie
+    #@user_movie = current_user.movies(params[:movie_id])
+  #end
 
   def movie_params
     params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
