@@ -1,11 +1,10 @@
 .containter
-  %p= "Forms will go here"
   .forms-field
     = simple_form_for @movie, :url => @movie.new_record? ? url_for(action: 'create', controller: 'movies') : url_for(action: 'update', controller: 'movies') do |f|
       .form-group
-        = f.input :title, required: true, label: "Movie", placeholder: "Title of Movie", input_html: { class: 'form-control form-required'}
+        /= f.input :title, required: true, label: "Movie", placeholder: "Title of Movie", input_html: { class: 'form-control form-required'}
         /= f.input :title, required: true, label: "Movie", placeholder: "Title of Movie", as: :search, data: {autocomplete_source: movie_path}, input_html: { class: 'form-control form-required'}
 
-        = f.input :service, required: false, label: "Service", collection: ["Amazon Prime", "Blu-ray", "Netflix", "YouTube TV"], input_html: { class: 'form-control form-required'}
+        = f.input :service, required: false, label: "Service:", collection: ["Amazon Prime", "Blu-ray", "Netflix", "YouTube TV"], input_html: { class: 'form-control form-required'}
 
       = f.button  :submit, class: "btn btn-info", value: "Save Movie"

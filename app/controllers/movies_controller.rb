@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
-    @movies = Movie.paginate(page: params[:page], per_page: 66).order("title ASC")
+    @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
 #    @search = params["search"]
 #    if @search.present?
 #      @title = @search["title"]
@@ -68,7 +68,7 @@ class MoviesController < ApplicationController
     #puts "----------------------------------USER: #{current_user.attributes}----------------------------------"
   begin
     current_user.movies << @user_movie
-    current_user.save
+    current_user.save!
   rescue ActiveRecord::RecordInvalid
     puts "$$$$$$$$$$$$$$$$$$$$$$$ no no no MOVIE ALREADY IN LIBRARY $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
   end
@@ -80,6 +80,7 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save MOVIE-OVERVIEW: #{@user_movie.overview.truncate(20)}----------------------------------"
     puts "----------------------------------Save MOVIE-PHOTO: #{@user_movie.photo}----------------------------------"
     puts "----------------------------------Save MOVIE-language: #{@user_movie.language}----------------------------------"
+    puts "----------------------------------Save MOVIE-GENRE: #{@user_movie.genre}----------------------------------"
     puts "----------------------------------Save MOVIE-ADULT: #{@user_movie.adult}----------------------------------"
     puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
@@ -99,6 +100,6 @@ class MoviesController < ApplicationController
   #end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :release_date, :adult, :user_movies)
   end
 end

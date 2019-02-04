@@ -15,46 +15,55 @@
 
 //What to watch
 .button {
-  background-color: #FFA62F;
+  background-color: #132F19;
   display: inline-block;
   margin: auto;
   margin-top: 40px;
   padding: 8px 20px;
   text-decoration:none;
   font-weight:bold;
-  border: solid 1px;
+  border: 1px solid black;
   border-radius:5px;
-  border-color: black;
   cursor:pointer;
   font-size: 1.7em;
 }
 
-.what-to-watch {
-  color: navy;
-}
-.what-to-watch:hover {
-  text-decoration: none;
+.button:hover {
+  border: 1px solid white;
+  border-radius:50px;
 
+}
+.what-to-watch {
+  color: orange;
+}
+
+.what-to-watch:hover {
+  color: white;
+  text-decoration: none;
 }
 // Add Movie Button
 .add-movie {
-  background-color: #FFD801;
-  color: navy;
+  background-color: #132F19;
+  color: orange;
   margin: auto;
   display: inline-block;
   margin-top: 20px;
   padding: 12px;
   text-decoration:none;
   font-weight:bold;
-  border: solid 1px;
-  border-color: black;
+  border: 1px solid orange;
   border-radius:5px;
   cursor:pointer;
 }
 
 
 .add-movie:hover {
+  color: white;
   text-decoration: none;
+  border: 1px solid white;
+  border-radius:50px;
+
+
 }
 
 .body-text {
@@ -70,18 +79,14 @@
 .movie-list {
   margin: auto;
   text-align: center;
-
 }
 
 // Individual movie cards
 .movie {
   display:inline-flex;
   margin-bottom: 6px;
-  border: 2px;
+  border: 2px solid #191919;
   border-radius: 6px;
-  border-style: solid;
-  border-color: #191919;
-
 }
 
 .clickable {
@@ -94,18 +99,16 @@
   margin: auto;
   font-weight: bold;
   text-transform: capitalize;
-  color: #191919;
+  color: #132F19;
   font-size: 1em;
 }
 
 .movie-title:hover {
-  background-color: #191919;
-  color: #f6f925;
+  background-color: #132F19;
+  color: orange;
   text-decoration: none;
-  border: 2px;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: #f6f925;
+  border: 2px solid orange;
+  border-radius: 4px;
 }
 
 /* Show Movie */
@@ -136,9 +139,9 @@
 }
 
 .show-photo {
-  border: 2px;
+  border: 3px;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 4px;
   border-style: solid;
   border-color: black;
 }
@@ -185,7 +188,7 @@ show-add-movie {
   text-align: center;
 }
 .digg_pagination {
-  background: white;
+  background: orange;
   cursor: default;
   /* self-clearing method: */ }
   .digg_pagination a, .digg_pagination span, .digg_pagination em {
@@ -195,19 +198,19 @@ show-add-movie {
     margin-right: 1px; }
   .digg_pagination .disabled {
     color: #999999;
-    border: 1px solid #dddddd; }
+    border: 1px solid #132F19; }
   .digg_pagination .current {
     font-style: normal;
     font-weight: bold;
-    background: #2e6ab1;
-    color: white;
+    background: #132F19;
+    color: orange;
     border: 1px solid #2e6ab1; }
   .digg_pagination a {
     text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5; }
+    color: #132F19;
+    border: 1px solid #132F19; }
     .digg_pagination a:hover, .digg_pagination a:focus {
-      color: #000033;
+      color: white;
       border-color: #000033; }
   .digg_pagination .page_info {
     background: #2e6ab1;

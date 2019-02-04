@@ -1,4 +1,8 @@
 .container.show-container
+  %h1= "MoviePicker"
+  .show-buttons
+    =link_to "My Movies", root_path, class: "btn btn-lg btn-outline-light"
+    =link_to "All Movies", movies_path, class: "btn btn-lg btn-outline-light"
   .show-info
     .show-content
       /puts "-----------------------------------#{@user_movie.title}"
@@ -11,10 +15,11 @@
           .show-movie-info
             %p.overview= "#{@movie.overview}"
             %p.service= "Service: " + "#{@movie.service}"
-            /%p.genre= "Genre: " + "#{@movie.genre}"
+            %p.genre= "Genre: " + "#{@movie.genre}"
             %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
             /%p.runtime= "Runtime: #{@movie.runtime}"
             = link_to "Add Movie", movie_show_clicked_path(@movie), class: "btn btn-outline-success"
+            = link_to "Add Service", edit_movie_path, class: "btn btn-outline-warning"
             = link_to "Remove Movie", user_movie_path, method: :delete, class: "btn btn-outline-danger"
       - else
         .show-no-photo
@@ -23,9 +28,8 @@
             .show-movie-info
               %p.overview= "Overview: " + "#{@movie.overview}"
               %p.service= "Service: " + "#{@movie.service}"
-              /%p.genre= "Genre: " + "#{@movie.genre}"
+              %p.genre= "Genre: " + "#{@movie.genre}"
               /%p.runtime= "Runtime: #{@movie.runtime}"
-    .show-buttons
-      =link_to "My Movies", root_path, class: "btn btn-outline-primary"
-      =link_to "Edit Movie", edit_movie_path, class: "btn btn-outline-warning"
-      =link_to "All Movies", movies_path, class: "btn btn-outline-dark"
+              = link_to "Add Movie", movie_show_clicked_path(@movie), class: "btn btn-outline-success"
+              = link_to "Edit Movie", edit_movie_path, class: "btn btn-outline-warning"
+              = link_to "Remove Movie", user_movie_path, method: :delete, class: "btn btn-outline-danger"

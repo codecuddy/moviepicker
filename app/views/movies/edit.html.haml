@@ -1,5 +1,6 @@
 %div.container
-  %h3= "Edit: #{@movie.title}"
+  %br
+  %h2= "Title: #{@movie.title}"
   = render 'form'
   %br
   =link_to "Back", root_path, class: "btn btn-warning"

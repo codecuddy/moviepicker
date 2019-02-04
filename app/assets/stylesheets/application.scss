@@ -18,7 +18,7 @@
 
 
 body {
-  background-color: #A9A9A9	;
+  background-color: #5F976A;
 }
 
 abbr {
@@ -30,10 +30,20 @@ abbr {
   /*opacity: .8;*/
 }
 
-.navbar-brand:a {
-  color: yellow;
+a {
+  color: #132F19;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+
 }
 
 .navbar-link {
   color: white;
+}
+
+.navbar-link:hover {
+  color: #132F19;
 }
