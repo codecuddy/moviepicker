@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
     @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
@@ -18,10 +19,12 @@ class MoviesController < ApplicationController
   end
 
   def show
+    puts "*********************** showing page"
   end
 
   def create
-    @movie = current_user.movies.new(movie_params)
+    #@movie = current_user.movies.new(movie_params
+    @movie = Movie.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie) , notice: "Movie Entered"
     else
@@ -41,8 +44,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-   @movie.destroy
-   redirect_to root_path
+   #@movie.destroy
+   #puts "destroying movie"
+   #redirect_to root_path
   end
 
   def random
@@ -64,7 +68,7 @@ class MoviesController < ApplicationController
     #puts "----------------------------------USER: #{current_user.attributes}----------------------------------"
   begin
     current_user.movies << @user_movie
-    current_user.save
+    current_user.save!
   rescue ActiveRecord::RecordInvalid
     puts "$$$$$$$$$$$$$$$$$$$$$$$ no no no MOVIE ALREADY IN LIBRARY $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
   end
@@ -76,6 +80,7 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save MOVIE-OVERVIEW: #{@user_movie.overview.truncate(20)}----------------------------------"
     puts "----------------------------------Save MOVIE-PHOTO: #{@user_movie.photo}----------------------------------"
     puts "----------------------------------Save MOVIE-language: #{@user_movie.language}----------------------------------"
+    puts "----------------------------------Save MOVIE-GENRE: #{@user_movie.genre}----------------------------------"
     puts "----------------------------------Save MOVIE-ADULT: #{@user_movie.adult}----------------------------------"
     puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
@@ -90,8 +95,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  #def find_user_movie
+    #@user_movie = current_user.movies(params[:movie_id])
+  #end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :adult, :user_movies)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :release_date, :adult, :user_movies)
   end
 end

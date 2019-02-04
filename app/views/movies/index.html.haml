@@ -1,4 +1,6 @@
 .container.button-head
+  %h1= "MoviePicker"
+  %h4= "Index Page"
   .buttons
     .div.button
       = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
@@ -8,10 +10,10 @@
 .container.body-text
   .div.title-link
     -if @movies != nil
-      %h1= "Explore All Movies"
+      %h1= "All Movies"
       .page-number
         .digg_pagination
-          = will_paginate @movies, renderer: BootstrapPagination::Rails
+          = will_paginate @movies
       .div.movie-list
         - @movies.each do |movie|
           .div.movie

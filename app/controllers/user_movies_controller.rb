@@ -1,14 +1,19 @@
 class UserMoviesController < ApplicationController
-#  before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  #before_action :find_user_movie, only: [:show, :edit, :update, :destroy]
 
-#    def remove
-#      @user_movie.destroy
-#      redirect_to root_path
-#    end
+  def destroy
+    @user_movie = current_user.movies.find(params[:id])
+    puts "-----------------------------------#{@user_movie.attributes}"
+    puts "-----------------------------------#{@user_movie.movie_id}"
 
-#    private
+    @user_movie.destroy
+    puts "--------------------destroying USER movie--------------------"
+    redirect_to root_path
+  end
 
-#    def find_movie
-#    end
+  private
 
+  #def find_user_movie
+    #@user_movie = current_user.movies.find(params[:id])
+  #end
 end
