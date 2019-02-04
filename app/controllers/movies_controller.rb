@@ -73,7 +73,7 @@ class MoviesController < ApplicationController
     puts "$$$$$$$$$$$$$$$$$$$$$$$ no no no MOVIE ALREADY IN LIBRARY $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
   end
 
-    @user_movie_ids = current_user.movies.ids.uniq!
+    #@user_movie_ids = current_user.movies.ids.uniq!
     puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.ID: #{@user_movie.id}----------------------------------"
     puts "-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.MOVIE-ID: #{@user_movie.movie_id}----------------------------------"
     puts "----------------------------------Save MOVIE-TITLE: #{@user_movie.title}----------------------------------"
