@@ -44,13 +44,11 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-   #@movie.destroy
-   #puts "destroying movie"
-   #redirect_to root_path
+   @movie.destroy
+   redirect_to root_path
   end
 
   def random
-#    @movie = current_user.movies.order("RANDOM()").first
     @movie = Movie.order("RANDOM()").first
     redirect_to movie_path(@movie)
   end

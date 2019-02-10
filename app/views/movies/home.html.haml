@@ -1,6 +1,5 @@
 .container.button-head
   %h1= "MoviePicker"
-  %h4= "Home Page"
   .buttons
     .div.button
       = link_to "What Should I Watch?", movie_user_random_path(@user_movies), class: "what-to-watch"
@@ -9,7 +8,7 @@
 
 .container.body-text
   .div.title-link
-    -if @user_movie == nil
+    -if @user_movies != nil
       %h1= "My Movies"
       .page-number
         .digg_pagination
