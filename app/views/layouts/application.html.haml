@@ -28,7 +28,7 @@
             = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
             |
             \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
-    .container
+    -#.container
       - if notice
         %p.alert.alert-success= notice
       - if alert

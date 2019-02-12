@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    puts "*********************** showing page"
+    puts "*********************** showing page ***********************"
   end
 
   def create
