@@ -17,7 +17,7 @@
  @import "bootstrap";
 
 
-body {
+body, .jumbotron {
   background-color: #5F976A;
 }
 
@@ -38,6 +38,12 @@ a:hover {
   color: white;
   text-decoration: none;
 
+}
+
+.navbar-brand {
+  .navbar-link {
+    text-align: right;
+  }
 }
 
 .navbar-link {

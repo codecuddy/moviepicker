@@ -58,6 +58,9 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie)
   end
 
+  def search_movies
+
+  end
 
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
@@ -98,6 +101,6 @@ class MoviesController < ApplicationController
   #end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :release_date, :adult, :user_movies)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :release_date, :adult, :user_movies, :search)
   end
 end

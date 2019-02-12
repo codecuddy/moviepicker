@@ -1,0 +1,5 @@
+.buttons
+  .search-bar
+    = simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f|
+      = f.input :title, label: false, input_html: {value: "Search Title", class: "search-bar"}
+      = f.submit "Search", class: "btn btn-dark"

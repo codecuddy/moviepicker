@@ -1,8 +1,8 @@
-.container.show-container
-  %h1= "MoviePicker"
+.show-container
   .show-buttons
-    =link_to "My Movies", root_path, class: "btn btn-lg btn-outline-light"
-    =link_to "All Movies", movies_path, class: "btn btn-lg btn-outline-light"
+    .container
+      =link_to "My Movies", root_path, class: "btn btn-lg btn-outline-light"
+      =link_to "All Movies", movies_path, class: "btn btn-lg btn-outline-light"
   .show-info
     .show-content
       /puts "-----------------------------------#{@user_movie.title}"
