@@ -2,7 +2,8 @@
   .buttons
     .div.button
       = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
-
+    .div
+      = render 'search'
 .container.body-text
   .div.title-link
     -if @movie == nil

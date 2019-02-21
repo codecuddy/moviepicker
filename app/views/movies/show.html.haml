@@ -17,6 +17,7 @@
             /%p.service= "Service: " + "#{@movie.service}"
             %p.genre= "Genre: " + "#{@movie.genre}"
             %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
+            %p.runtime= "Runtime: #{@movie.runtime/60} hours #{@movie.runtime%60} minutes"
           .div.bottom-form
             = render "form"
             /%p.runtime= "Runtime: #{@movie.runtime}"
