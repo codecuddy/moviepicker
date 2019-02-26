@@ -8,29 +8,29 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %nav.navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-brand= link_to "My Library", root_path
-        .navbar-brand= link_to "All Available Movies", movies_path
+      - if current_user
+        .container
+          .navbar-brand= link_to "My Library", root_path
+          .navbar-brand= link_to "All Available Movies", movies_path
+
+          -# - if user_signed_in?
+          .nav.navbar-nav.navbar-left
+            /%li= link_to "Add Movie", new_movie_url
+          %p.navbar-text.pull-right
+            %h5= "#{current_user.email}"
+            .navbar-brand
+              .navbar-link= link_to "Log Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+
+      - else
+        .container
+          .navbar-brand
+            %h2= "MoviePicker"
 
 
-        -# - if user_signed_in?
-        .ul.nav.navbar-nav.navbar-left
-          /%li= link_to "Add Movie", new_movie_url
-        %p.navbar-text.pull-right
-          - if user_signed_in?
-            Welcome Back,
-            = succeed "." do
-              %strong= current_user.email
-            = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
-            |
-            \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
-          - else
-            = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
-            |
-            \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
-    .container
-      - if notice
-        %p.alert.alert-success= notice
-      - if alert
-        %p.alert.alert-danger= alert
+
+      -#.container
+        - if notice
+          %p.alert.alert-success= notice
+          - if alert
+          %p.alert.alert-danger= alert
     = yield

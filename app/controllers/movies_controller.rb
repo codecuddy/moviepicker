@@ -3,12 +3,11 @@ class MoviesController < ApplicationController
   #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
-    @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
-#    @search = params["search"]
-#    if @search.present?
-#      @title = @search["title"]
-#      @movies = Movie.where(title: @title)
-#    end
+    #if params[:search]
+    #  @movies = Movie.search(params[:search]).order("title ASC")
+    #else
+      @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
+    #end
   end
 
   def home
@@ -19,8 +18,24 @@ class MoviesController < ApplicationController
   end
 
   def show
-    puts "*********************** showing page"
+    puts "*********************** showing page ***********************"
+    puts "!!!!!!!!!!!!!!!!!!!!!!! #{@movie.title} !!!!!!!!!!!!!!!!!!!!!!!"
+
+    response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
+    puts "********** #{response} **********"
+    if response.code == 500
+      raise "Issues with URL in movies show controller"
+    else
+      data = JSON.parse(response.body).symbolize_keys!
+      @movie.runtime = data[:runtime]
+      @movie.genre = data[:genres].pluck("name")
+      puts "#{@movie.genre}"
+      @movie.save
+      puts "-------- #{@movie.runtime} ------"
+      puts "-^-^-^-^ #{@movie.genre} -^-^-^-^-"
+    end
   end
+
 
   def create
     #@movie = current_user.movies.new(movie_params
@@ -58,6 +73,9 @@ class MoviesController < ApplicationController
     redirect_to movie_path(@movie)
   end
 
+  def search_movies
+
+  end
 
   def show_clicked
     @user_movie = Movie.find(params[:movie_id])
@@ -79,10 +97,12 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save MOVIE-PHOTO: #{@user_movie.photo}----------------------------------"
     puts "----------------------------------Save MOVIE-language: #{@user_movie.language}----------------------------------"
     puts "----------------------------------Save MOVIE-GENRE: #{@user_movie.genre}----------------------------------"
+    puts "----------------------------------Save MOVIE-TIME: #{@user_movie.runtime}----------------------------------"
     puts "----------------------------------Save MOVIE-ADULT: #{@user_movie.adult}----------------------------------"
     puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
     puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
+
     redirect_to root_path
 
   end
@@ -98,6 +118,6 @@ class MoviesController < ApplicationController
   #end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre, :overview, :photo, :language, :release_date, :adult, :user_movies)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :runtime, :photo, :language, :release_date, :adult, :user_movies, :search)
   end
 end
