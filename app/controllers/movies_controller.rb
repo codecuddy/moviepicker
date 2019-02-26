@@ -3,11 +3,11 @@ class MoviesController < ApplicationController
   #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
-    if params[:search]
-      @movies = Movie.search(params[:search]).order("title ASC")
-    else
+    #if params[:search]
+    #  @movies = Movie.search(params[:search]).order("title ASC")
+    #else
       @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
-    end
+    #end
   end
 
   def home
@@ -19,24 +19,23 @@ class MoviesController < ApplicationController
 
   def show
     puts "*********************** showing page ***********************"
-    puts "!!!!!!!!!!!!!!!!!!! #{@movie.title} !!!!!!!!!!!!!!!!!!!!!!!"
-    puts "!!!!!!!!!!!!!!!!!!! #{@movie.movie_id} !!!!!!!!!!!!!!!!!!!!!!!"
+    puts "!!!!!!!!!!!!!!!!!!!!!!! #{@movie.title} !!!!!!!!!!!!!!!!!!!!!!!"
 
-    puts "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
     response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
-    puts "** #{@response}"
+    puts "********** #{response} **********"
     if response.code == 500
       raise "Issues with URL in movies show controller"
     else
       data = JSON.parse(response.body).symbolize_keys!
-      puts "+++------ #{data} ------+++"
       @movie.runtime = data[:runtime]
+      @movie.genre = data[:genres].pluck("name")
+      puts "#{@movie.genre}"
       @movie.save
-      puts "------ #{@movie.runtime} ------"
-
+      puts "-------- #{@movie.runtime} ------"
+      puts "-^-^-^-^ #{@movie.genre} -^-^-^-^-"
     end
-    puts "!!!!!!!!!!!!!!!!!!! #{@movie.title} !!!!!!!!!!!!!!!!!!!!!!!"
   end
+
 
   def create
     #@movie = current_user.movies.new(movie_params
@@ -98,6 +97,7 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save MOVIE-PHOTO: #{@user_movie.photo}----------------------------------"
     puts "----------------------------------Save MOVIE-language: #{@user_movie.language}----------------------------------"
     puts "----------------------------------Save MOVIE-GENRE: #{@user_movie.genre}----------------------------------"
+    puts "----------------------------------Save MOVIE-TIME: #{@user_movie.runtime}----------------------------------"
     puts "----------------------------------Save MOVIE-ADULT: #{@user_movie.adult}----------------------------------"
     puts "----------------------------------Save MOVIE-YEAR: #{@user_movie.release_date}----------------------------------"
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
