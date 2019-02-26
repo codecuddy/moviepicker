@@ -3,11 +3,7 @@ class MoviesController < ApplicationController
   #before_action :find_user_movie, only: [:show, :edit, :show, :destroy]
 
   def index
-    #if params[:search]
-    #  @movies = Movie.search(params[:search]).order("title ASC")
-    #else
-      @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
-    #end
+    @movies = Movie.paginate(page: params[:page], per_page: 120).order("title ASC")
   end
 
   def home
@@ -18,27 +14,20 @@ class MoviesController < ApplicationController
   end
 
   def show
-    puts "*********************** showing page ***********************"
-    puts "!!!!!!!!!!!!!!!!!!!!!!! #{@movie.title} !!!!!!!!!!!!!!!!!!!!!!!"
-
     response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
-    puts "********** #{response} **********"
     if response.code == 500
       raise "Issues with URL in movies show controller"
     else
       data = JSON.parse(response.body).symbolize_keys!
       @movie.runtime = data[:runtime]
-      @movie.genre = data[:genres].pluck("name")
+      @movie.genre = data[:genres].pluck("name").join(', ')
       puts "#{@movie.genre}"
       @movie.save
-      puts "-------- #{@movie.runtime} ------"
-      puts "-^-^-^-^ #{@movie.genre} -^-^-^-^-"
     end
   end
 
 
   def create
-    #@movie = current_user.movies.new(movie_params
     @movie = Movie.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie) , notice: "Movie Entered"
@@ -71,10 +60,6 @@ class MoviesController < ApplicationController
   def user_random
     @movie = current_user.movies.order("RANDOM()").first
     redirect_to movie_path(@movie)
-  end
-
-  def search_movies
-
   end
 
   def show_clicked
