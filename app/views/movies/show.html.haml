@@ -15,9 +15,13 @@
           .show-movie-info
             %p.overview= "#{@movie.overview}"
             /%p.service= "Service: " + "#{@movie.service}"
-            %p.genre= "Genre: " + "#{@movie.genre}"
-            %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
-            %p.runtime= "Runtime: #{@movie.runtime/60} hours #{@movie.runtime%60} minutes"
+            - if @movie.runtime && @movie.genre != nil
+              %p.genre= "Genre: " + "#{@movie.genre}"
+              %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
+              %p.runtime= "Runtime: #{@movie.runtime/60} hours #{@movie.runtime%60} minutes"
+            - else
+              %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
+
           .div.bottom-form
             = render "form"
             /%p.runtime= "Runtime: #{@movie.runtime}"
