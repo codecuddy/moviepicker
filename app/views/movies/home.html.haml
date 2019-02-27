@@ -1,28 +1,35 @@
 .container.button-head
-  .buttons
-    .button
-      = link_to "What Should I Watch?", movie_user_random_path(@user_movies), class: "what-to-watch"
-    /.div
-    /= link_to "Add Movies To Library", movies_path, class: "add-movie"
+  - user_movies = current_user.user_movies.first
+  - if user_movies == nil
+    .jumbotron
+      %h3= "Add Movies to Your Library"
+      = link_to "List of All Movies", movies_path, class: "add-first-movie"
 
-.container.body-text
-  .div.title-link
-    %h1= "My Library"
-    .page-number
-      .digg_pagination
-        = will_paginate @user_movies, renderer: BootstrapPagination::Rails
-    .div.movie-list
-      - @user_movies.each do |user_movie|
-        .div.movie
-          = link_to movie_path(user_movie[:id]), class: "movie-title" do
-            %p="#{user_movie.title}".truncate(35)
-            .clickable
-              - if user_movie.photo?
-                %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{user_movie.photo.to_s}" }
-              - else
-                .index-no-photo
-                  %p= "No Photo Available"
+  - else
+    .buttons
+      .button
+        = link_to "What Should I Watch?", movie_user_random_path(@user_movies), class: "what-to-watch"
+      /.div
+      /= link_to "Add Movies To Library", movies_path, class: "add-movie"
+
+    .container.body-text
       .div.title-link
+        %h1= "My Library"
         .page-number
           .digg_pagination
-            = will_paginate @user_movies
+            = will_paginate @user_movies, renderer: BootstrapPagination::Rails
+        .div.movie-list
+          - @user_movies.each do |user_movie|
+            .div.movie
+              = link_to movie_path(user_movie[:id]), class: "movie-title" do
+                %p="#{user_movie.title}".truncate(35)
+                .clickable
+                  - if user_movie.photo?
+                    %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{user_movie.photo.to_s}" }
+                  - else
+                    .index-no-photo
+                      %p= "No Photo Available"
+          .div.title-link
+            .page-number
+              .digg_pagination
+                = will_paginate @user_movies

@@ -1,8 +1,6 @@
 .show-container
-  .show-buttons
-    .container
-      =link_to "My Movies", root_path, class: "btn btn-lg btn-outline-light"
-      =link_to "All Movies", movies_path, class: "btn btn-lg btn-outline-light"
+  .div.button
+    = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
   .show-info
     .show-content
       /puts "-----------------------------------#{@user_movie.title}"
@@ -37,9 +35,13 @@
             %h2.show-movie-title= "#{@movie.title}"
             .show-movie-info
               %p.overview= "Overview: " + "#{@movie.overview}"
-              /%p.service= "Service: " + "#{@movie.service}"
               %p.genre= "Genre: " + "#{@movie.genre}"
-              /%p.runtime= "Runtime: #{@movie.runtime}"
-              = link_to "Add Movie", movie_show_clicked_path(@movie), class: "btn btn-outline-success"
-              = link_to "Edit Movie", edit_movie_path, class: "btn btn-outline-warning"
-              = link_to "Remove Movie", user_movie_path, method: :delete, class: "btn btn-outline-danger"
+              %p.release_date= "Year Released: " + "#{@movie.release_date[0..3]}"
+              %p.runtime= "Runtime: #{@movie.runtime}"
+              .div.bottom-form
+                = render "form"
+                - if user_movie == nil
+                  = link_to "Delete", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
+                  = link_to "Add", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
+                - else
+                  = link_to "Remove", user_movie_path(user_movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"

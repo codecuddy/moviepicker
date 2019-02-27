@@ -7,7 +7,7 @@
       = render 'search'
 .container.body-text
   .div.title-link
-    -if @movie == nil
+    -if @movies != nil
       %h1= "All Movies"
       .page-number
         .digg_pagination
