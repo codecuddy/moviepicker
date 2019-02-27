@@ -26,7 +26,7 @@
             = render "form"
             /%p.runtime= "Runtime: #{@movie.runtime}"
             - if user_movie == nil
-              /= link_to "Delete from Database", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
+              = link_to "Delete from Database", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
               = link_to "Add Movie", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
             - else
               /= link_to "Add Service", edit_movie_path, class: "btn btn-outline-warning"

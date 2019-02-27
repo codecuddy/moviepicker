@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       @movie.genre = data[:genres].pluck("name").join(', ')
       puts "#{@movie.genre}"
       @movie.save
-    end
+    end 
   end
 
 
@@ -89,7 +89,6 @@ class MoviesController < ApplicationController
     puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
 
     redirect_to root_path
-
   end
 
   private
