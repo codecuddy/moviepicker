@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
       @movie.genre = data[:genres].pluck("name").join(', ')
       puts "#{@movie.genre}"
       @movie.save
-    end 
+    end
   end
 
 
