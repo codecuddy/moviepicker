@@ -1,6 +1,5 @@
 .container.button-head
-  - user_movies = current_user.user_movies.first
-  - if user_movies == nil
+  - if @first_movie == nil
     .jumbotron
       %h3= "Add Movies to Your Library"
       = link_to "List of All Movies", movies_path, class: "add-first-movie"

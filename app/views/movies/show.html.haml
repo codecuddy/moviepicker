@@ -4,7 +4,6 @@
   .show-info
     .show-content
       /puts "-----------------------------------#{@user_movie.title}"
-      - user_movie = current_user.user_movies.where(movie_id: @movie.id).first
       - if @movie.photo?
         .show-photo
           %img{ src: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/#{@movie.photo.to_s}" }
@@ -23,7 +22,7 @@
           .div.bottom-form
             = render "form"
             /%p.runtime= "Runtime: #{@movie.runtime}"
-            - if user_movie == nil
+            - if @user_movie == nil
               = link_to "Delete", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
               = link_to "Add", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
             - else
@@ -40,7 +39,7 @@
               %p.runtime= "Runtime: #{@movie.runtime}"
               .div.bottom-form
                 = render "form"
-                - if user_movie == nil
+                - if @user_movie == nil
                   = link_to "Delete", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
                   = link_to "Add", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
                 - else

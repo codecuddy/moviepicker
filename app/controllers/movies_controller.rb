@@ -8,6 +8,7 @@ class MoviesController < ApplicationController
 
   def home
     @user_movies = current_user.movies.paginate(page: params[:page], per_page: 20).order("title ASC")
+    @first_movie = current_user.user_movies.first
   end
 
   def new
@@ -15,6 +16,7 @@ class MoviesController < ApplicationController
 
   def show
     @movies = Movie.all
+    @user_movie = current_user.user_movies.where(movie_id: @movie.id).first
     response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
     if response.code == 500
       raise "Issues with URL in movies show controller"
