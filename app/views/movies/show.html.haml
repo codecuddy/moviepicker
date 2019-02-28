@@ -27,7 +27,7 @@
               = link_to "Add", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
             - else
               /= link_to "Add Service", edit_movie_path, class: "btn btn-outline-warning"
-              = link_to "Remove", user_movie_path(user_movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
+              = link_to "Remove", user_movie_path(@user_movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
       - else
         .show-no-photo
           .show-words
@@ -41,6 +41,6 @@
                 = render "form"
                 - if @user_movie == nil
                   = link_to "Delete", movie_path(@movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
-                  = link_to "Add", movie_show_clicked_path(@movie), class: "btn btn-outline-success btn-add-delete"
+                  = link_to "Add", user_movie_path(@movie), class: "btn btn-outline-success btn-add-delete"
                 - else
-                  = link_to "Remove", user_movie_path(user_movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
+                  = link_to "Remove", user_movie_path(@user_movie), method: :delete, class: "btn btn-outline-danger btn-add-delete"
