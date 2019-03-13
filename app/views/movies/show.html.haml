@@ -1,6 +1,6 @@
 .show-container
   .div.button
-    = link_to "Select Random Movie", movie_random_path(@movies), class: "what-to-watch"
+    = link_to "What Should I Watch?", movie_user_random_path(@movies), class: "what-to-watch"
   .show-info
     .show-content
       /puts "-----------------------------------#{@user_movie.title}"

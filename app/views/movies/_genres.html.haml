@@ -1,0 +1,5 @@
+.buttons
+  .forms-field
+    = form_tag movies_path, :method => 'get' do |f|
+      .form-group
+        = f.input @movies.each.genre, collection: ["Amazon Prime", "Blu-ray", "Netflix", "Vudu", "YouTube TV", "Other"], include_blank: "----Select Service----", input_html: { class: 'form-control service-input', onchange: 'this.form.submit()'}

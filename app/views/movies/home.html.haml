@@ -16,7 +16,7 @@
         %h1= "My Library"
         .page-number
           .digg_pagination
-            = will_paginate @user_movies, renderer: BootstrapPagination::Rails
+            = will_paginate @user_movies
         .div.movie-list
           - @user_movies.each do |user_movie|
             .div.movie
