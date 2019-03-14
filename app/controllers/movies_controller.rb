@@ -7,7 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def home
-    @user_movies = current_user.movies.paginate(page: params[:page], per_page: 20).order("title ASC")
+    @user_movies = current_user.movies.paginate(page: params[:page], per_page: 24).order("title ASC")
+    @first_movie = current_user.user_movies.first
   end
 
   def new
@@ -15,15 +16,19 @@ class MoviesController < ApplicationController
 
   def show
     @movies = Movie.all
-    response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
-    if response.code == 500
-      raise "Issues with URL in movies show controller"
-    else
-      data = JSON.parse(response.body).symbolize_keys!
-      @movie.runtime = data[:runtime]
-      @movie.genre = data[:genres].pluck("name").join(', ')
-      puts "#{@movie.genre}"
-      @movie.save
+    @user_movie = current_user.user_movies.where(movie_id: @movie.id).first
+    puts "!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@ #{@movie.genre}"
+    if @movie.runtime == nil
+      response = RestClient.get "https://api.themoviedb.org/3/movie/"+@movie.movie_id.to_s+"?api_key="+ENV['MOVIES_DB_API_KEY']
+      if response.code == 500
+        raise "Issues with URL in movies show controller"
+      else
+        data = JSON.parse(response.body).symbolize_keys!
+        @movie.runtime = data[:runtime]
+        @movie.genre = data[:genres].pluck("name").join(', ')
+        puts "#{@movie.genre}"
+        @movie.save
+      end
     end
   end
 
@@ -89,7 +94,7 @@ class MoviesController < ApplicationController
     puts "----------------------------------Save CURRENT USER EMAIL: #{@current_user.email}----------------------------------"
     puts "---:(-----------------------------Save MOVIE-IDs: #{@user_movie_ids}----------------------------------"
 
-    redirect_to movie_random_path
+    redirect_to root_path
   end
 
   private
@@ -103,6 +108,6 @@ class MoviesController < ApplicationController
   #end
 
   def movie_params
-    params.require(:movie).permit(:title, :service, :genre, :overview, :runtime, :photo, :language, :release_date, :adult, :user_movies, :search)
+    params.require(:movie).permit(:title, :service, :genre, :overview, :runtime, :photo, :language, :release_date, :adult, :user_movies)
   end
 end

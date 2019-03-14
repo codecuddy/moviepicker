@@ -1,6 +1,5 @@
 .container.button-head
-  - user_movies = current_user.user_movies.first
-  - if user_movies == nil
+  - if @first_movie == nil
     .jumbotron
       %h3= "Add Movies to Your Library"
       = link_to "List of All Movies", movies_path, class: "add-first-movie"
@@ -17,7 +16,7 @@
         %h1= "My Library"
         .page-number
           .digg_pagination
-            = will_paginate @user_movies, renderer: BootstrapPagination::Rails
+            = will_paginate @user_movies
         .div.movie-list
           - @user_movies.each do |user_movie|
             .div.movie
